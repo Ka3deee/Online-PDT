@@ -1,0 +1,179 @@
+trfolistfile = xdevpathfull + '\trfolist.txt'
+if file(trfolistfile)
+	thisform.timer1.enabled = .f.	
+	clos table all		
+	
+	delete file c:\pdtsystem\mmspick.dbf
+	delete file c:\pdtsystem\pickupc.dbf
+	
+	delete file xdevpathfull + '\trfrls.txt'
+	delete file xdevpathfull + '\trfrls1.txt'
+	delete file xdevpathfull + '\trfrlsok.txt'		
+
+	create cursor trfoc( xloc num(5,0) , xdocno num(6,0))
+	select trfoc
+	appe from xdevpathfull + '\trfolist.txt' type sdf
+	*appe from  type deli with blank	
+	
+	*browse
+	scan	
+				*xpolst = substr(this.parent.list1.list(x),1,16)
+			
+			xponum=trfoc.xdocno
+			xstornum=trfoc.xloc
+			
+			m_pickexist=pickexist(xponum,xstornum)
+			if m_pickexist > 0								
+				*messageb("pick exist" + str(m_pickexist))				
+				if m_pickexist = 1
+					*messageb("pick exist processing")				
+					sqlp(gnConnHandle,'call MMSMtsml.sp_pick(?xponum,?xstornum)','tmpcur')
+					sqle(gnConnHandle)
+					sqlp(gnConnHandle,'call MMSMtsml.sp_pick1(?xponum,?xstornum)','tmpcurx1')
+					sqle(gnConnHandle)
+					select tmpcur
+					if reccount() > 0
+						set safe off			
+						select whmove,inumbr,whmumr,whmvqt,sum(whmvqr) as whmvqr,iupc,idescr,strnum,istdpk,ivndpn,whmvsq,whmfsl from tmpcur group by whmove,inumbr,strnum  into cursor tmpcrx
+						select whmove,inumbr,whmumr,whmvqt,sum(whmvqr) as whmvqr,iupc,idescr,strnum,istdpk,ivndpn,whmvsq,whmfsl from tmpcurx1 group by whmove,inumbr,strnum  into cursor tmpcrx1
+						select *,000000000.00 as rcvqty,round(whmvqr/istdpk,2) as expqty,000 as rexpday from tmpcrx into table c:\pdtsystem\cursr1							
+						select *,000000000.00 as rcvqty,round(whmvqr/istdpk,2) as expqty,000 as rexpday from tmpcrx1 into table c:\pdtsystem\cursrx1							
+						update c:\pdtsystem\cursr1 set iupc=0
+						select inumbr,iupc from tmpcur into table c:\pdtsystem\cursr2				
+						sele cursrx1			
+						recxcnt = alltr(str(reccount()))								
+						sele cursr1			
+						if !file('c:\pdtsystem\mmspick.dbf')
+						    copy to  c:\pdtsystem\mmspick type foxp
+						    	use c:\pdtsystem\mmspick in 0									
+						    	select mmspick
+						    	zap
+						    	appe from c:\pdtsystem\cursrx1							
+						    set safe on
+						else
+							if !used('MMSPick')
+								use c:\pdtsystem\mmspick in 0									
+							endif
+							sele mmspick							
+							appe from c:\pdtsystem\cursrx1				
+					    endif		  
+					      
+					    sele cursr2
+					    if !file('c:\pdtsystem\pickupc.dbf')
+					    	set safe off
+						    copy to  c:\pdtsystem\pickupc type foxp		    				    
+						    set safe on							    
+					    endif
+		  
+					    select cursr1
+					    scan
+					    	xxnumb=cursr1.inumbr		    	
+							*** get primary upc
+							sqlp(gnConnHandle,'call MMSMtsml.getprimupc(?xxnumb)','tmpupc1')
+							sqle(gnConnHandle)
+							select tmpupc1
+							if reccount() > 0	
+								go top
+								m_xctr = .t.
+								scan
+									select iupc from c:\pdtsystem\pickupc where iupc=tmpupc1.Iupc and inumbr=xxnumb into cursor fortest
+									sele fortest
+									if reccount() = 0
+										insert into c:\pdtsystem\pickupc(inumbr, iupc) values (xxnumb,tmpupc1.Iupc)									
+									endif
+									if m_xctr = .t.
+										update c:\pdtsystem\mmspick set iupc=tmpupc1.Iupc where inumbr=xxnumb
+										m_xctr = .f.
+									endif
+								endscan
+							endif				
+							*** get parent sku upc
+							sqlp(gnConnHandle,'call MMSMtsml.getparentupc(?xxnumb)','tmpupc')
+							sqle(gnConnHandle)
+							select tmpupc
+							*browse
+							if reccount() > 0	
+								go top
+								scan
+									select iupc from c:\pdtsystem\pickupc where iupc=tmpupc.Iupc and inumbr=xxnumb into cursor fortest1
+									sele fortest1
+									if reccount() = 0		
+										if not isnull(tmpupc.Iupc)
+											insert into c:\pdtsystem\pickupc(inumbr, iupc) values (xxnumb,tmpupc.Iupc)
+										endif
+									endif									
+								endscan
+							endif						
+				    	endscan		    			    
+				    
+				    	*this.parent.list2.additem(xpolst + " = "+ recxcnt +" record(s) Extracted." )		    
+					*else
+					    *this.parent.list2.additem(xpolst + " = No Detail Extracted." )			
+					endif				
+				*else
+					*this.parent.list2.additem(xpolst + " = Doc. number already processed." )			
+				endif
+			*else
+			*	this.parent.list2.additem(xpolst + " = Doc. number not Found." )			
+			endif
+	endscan
+
+	
+	clos table all
+	if file('c:\pdtsystem\mmspick.dbf')
+		select * from c:\pdtsystem\mmspick into cursor dummy
+		if _Tally > 0					
+			select dummy
+			scan
+				x_number =  dummy.inumbr
+				sqle(gnConnHandle,"call MMSMtsml.sp_lccexp1(?x_number)","c_exp1")
+				sele c_exp1
+				if reccount() > 0			
+					if c_exp1.lcexps > 0
+						update c:\pdtsystem\mmspick set rexpday = c_exp1.lcexps where inumbr = x_number
+					endif
+				endif
+			endscan
+		endif
+	endif 
+	
+	if !file('c:\pdtsystem\mmspick.dbf')
+		create cursor mmm ( idescr char(10))
+		sele mmm
+		copy to c:\pdtsystem\mmspick
+	endif
+	
+	if !used("mmspick")
+		use c:\pdtsystem\mmspick in 0 
+	endif
+	sele mmspick
+	repla all idescr with strtran(idescr,'"',';')
+	repla all idescr with strtran(idescr,"'",';')
+	repla all idescr with strtran(idescr,",",';')	
+	copy to xdevpathfull+"\trfrls.txt" type deli
+	
+	if !file('c:\pdtsystem\pickupc.dbf')
+		create cursor mmm1 ( idescr char(10))
+		sele mmm1
+		copy to c:\pdtsystem\pickupc
+	endif
+
+	if !used("pickupc")
+		use c:\pdtsystem\pickupc in 0 
+	endif
+
+	sele pickupc
+	copy to xdevpathfull+"\trfrls1.txt" type deli
+	
+	create cursor xf ( text1 c(10))
+	insert into xf (text1) values ("dsds")
+	sele xf
+	copy to xdevpathfull+"\trfrlsok.txt" type deli
+	
+	clos table all
+	delete file xdevpathfull + '\trfolist.txt'
+	*gregoday
+	
+	xdevpathfull = ""
+	thisform.timer1.enabled = .t.
+endif

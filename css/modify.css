@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import "compass/css3";
+    
+* { 
+    box-sizing: border-box; 
+}
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+.font-title{
+    font-size: 20px;
+}
+.semi-visible {
+    color: rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+td {
+    font-size:12px;
+}
+
+/* ------------------------------------------ Components */
+
+.button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 5%;
+}
+.btn-landing {
+    height: 15vh;
+    font-size: 150%;
+    font-weight: bold;
+}
+.trf-span {
+    font-size: 70% !important;
+}
+.trf-btn {
+    width: 100%;
+    background-color: #337ab7;
+    color: white;
+}
+.trf-btn:hover {
+    color: white;
+    background: #286090;
+}
+
+/* ------------------------------------------  Notification */
+
+.msg {
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.error {
+    color: white;
+    background: rgba(203, 32, 32, 0.5);
+}
+.success {
+    color: white;
+    background: #5cb85cb4;
+}
+.notif {
+    position: relative;
+    height: 34px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    transition: ease-in-out;
+}
+
+@media only screen and (max-width: 500px) {
+    .button-container {
+        grid-template-columns: 1fr;
+        grid-column-gap: none;
+        grid-row-gap: 25px;
+    }
+}

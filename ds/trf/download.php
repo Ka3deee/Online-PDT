@@ -1,0 +1,36 @@
+<?php
+    if (str_contains($_SERVER['REQUEST_URI'], '.php')) header("Location: ./?download");
+?>
+
+<div class="text-left" style="margin-bottom: 5px;">
+    <div style="margin-bottom: 10px;">
+        <label>TRF No.</label>
+        <input type="text" class="form-control" id="trf_no" placeholder="TRF No" required autofocus onfocus="this.select()"
+            onkeypress="javascript: if(event.keyCode == 13 && this.value.trim() != '') addTrfList(this.value)"
+        >
+    </div>
+
+    <button type="button" class="btn btn-primary btn-block btn-sm" onclick="document.getElementById('trf_no').value=''; document.getElementById('trf_no').focus(); document.getElementById('show_errmsg').innerHTML='';">CLEAR</button>
+    <button type="button" class="btn btn-primary btn-block btn-sm" disabled>PREVIOUS LIST</button>
+
+    <div style="margin-top: 10px;">
+        <label>TRF LIST (List Count)</label>
+        <table class="table table-bordered table-sm">
+            <thead class="text-center">
+                <th width="50%">TRF #</th>
+                <th width="50%"></th>
+            </thead>
+            <tbody id="trfList">
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="button" class="btn btn-primary btn-block btn-sm" onclick="clearTrfList()">CLEAR LIST</button>
+    <button type="button" class="btn btn-primary btn-block btn-sm" onclick="download()">DOWNLOAD</button>
+</div>
+
+<?php
+?>
