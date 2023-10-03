@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import "compass/css3";
+    
+* { 
+    box-sizing: border-box; 
+	margin: 0;
+	padding: 0;
+	font-weight: 100;
+	font-family: 'Montserrat', sans-serif;
+}
+body {
+    position: relative;
+}
+.border {
+	border: 1px solid red;
+}
+.mb {
+	margin-bottom: 10px;
+}
+.display-center {
+	display: grid;
+	place-content: center;
+}
+.tc {
+	text-align: center;
+}
+.font {
+    font-size: 20px;
+}
+.semi-visible {
+	color: rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+.w {
+	width: 80vw;
+}
+
+/*//* Components */
+.btn {
+	border-radius: 5px;
+	width: 100%;
+	background: #337ab7;
+	color: white;
+	border: none;
+}
+.btn-md {
+	height: 35px;
+	font-size: 15px;
+}
+.btn-lg {
+	height: 45px;
+	font-size: 20px;
+}
+.btn:hover {
+    color: white;
+    background: #286090;
+	cursor: pointer;
+}
+.msg {
+	height: 35px;
+	display: grid;
+	place-content: center;
+	border-radius: 5px;
+	background: #ffad4256;
+	color: rgba(165, 42, 42, 0.752);
+}
+input {
+	height: 35px;
+	border: 1px solid #337ab7;
+	border-radius: 5px;
+	outline: none;
+	padding: 0 20px;
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+}

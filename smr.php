@@ -23,7 +23,7 @@
 		<button type="button" class="btn btn-primary btn-lg btn-block" onclick = "window.location.href='rtv_system/server_settings.php'">RTV System</button>
 		<button type="button" onclick = "window.location.href='price_verifier/priceverifier.php'" class="btn btn-primary btn-lg btn-block">Price Verifier</button>
 		<button type="button" onclick="window.location.href='trf_in/index.php'" class="btn btn-primary btn-lg btn-block">TRF Receiving <span class="trf-span">( In )</span></button>
-    <button type="button" onclick = "alert('Coming Soon')" class="btn btn-primary btn-lg btn-block">TRF Releasing <span class="trf-span">( Out )</span></button>
+    <button type="button" onclick = "window.location.href='trf_out/index.php'" class="btn btn-primary btn-lg btn-block">TRF Releasing <span class="trf-span">( Out )</span></button>
 		<button type="button" class="btn btn-primary btn-lg btn-block" onclick = "alert('Coming Soon')">Shelf Tag Data Collection</button>
     
 	  <button type="button" class="btn btn-primary btn-lg btn-block" onclick = "window.location.href='index.php'">
