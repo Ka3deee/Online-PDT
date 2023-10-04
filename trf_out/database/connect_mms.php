@@ -2,7 +2,6 @@
 
 $host = "192.168.0.40";
 $db_name = "mmsmtsml"; 
-//$db_name1 = "mmsmrlib";
 $username = "studentwhs";
 $password = "studentwhs";   
 $conn_m = null;

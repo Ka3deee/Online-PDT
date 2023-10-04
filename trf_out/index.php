@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,9 +22,13 @@
             <br>
             <br>
         </div>
-        <div class="display-center">
+        <div class="display-center">            
             <div class="mb w">
-                <div class="msg">Please set store first!</div>
+                <?php if (isset($_SESSION['store-code'])) { ?>
+                    <div class="msg success"><?php echo $_SESSION['store-code'] . " - " . $_SESSION['store-loc']; ?></div>
+                <?php } else { ?>
+                    <div class="msg warning">Please set store first!</div>
+                <?php } ?>
             </div>  
             <div class="mb w">
                 <button onclick="window.location.href='set_store.php'" class="btn btn-md">Set Store</button>
@@ -44,10 +49,7 @@
             <hr>
             <br>
             <div class="tc semi-visible">
-                <h5>Date Updated: October 30</h5>
-            </div>
-            <div class="tc semi-visible">
-                <h5>Server</h5>
+                <h5>Date updated: 2023 October</h5>
             </div>
         </div>
 

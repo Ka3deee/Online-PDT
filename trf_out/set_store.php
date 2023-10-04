@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,15 +23,22 @@
             <br>
         </div>
         <div class="display-center">
+            <div id="loader-wrapper" class="mb w">
+                <div id="loader"></div><strong>Checking store code... Please wait...</strong>
+            </div>
             <div class="mb w">
-                <div class="msg">Please set store first!</div>
+                <?php if (isset($_SESSION['store-code'])) { ?>
+                    <div class="msg success"><?php echo $_SESSION['store-code'] . " - " . $_SESSION['store-loc']; ?></div>
+                <?php } else { ?>
+                    <div class="msg warning">Please set store first!</div>
+                <?php } ?>
             </div>  
             <div class="mb w">
                 <label for="store-code"></label>
                 <input maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" class="btn-lg" id="store-code" type="text">
             </div>
             <div class="mb w">
-                <button class="btn btn-lg">Save</button>
+                <button class="btn btn-lg" onclick="Checkstore()" id="save-btn">Save</button>
             </div>
             </div>
             <div class="mb w">
@@ -45,29 +53,28 @@
 </body>
 <script>
     function Checkstore(){
-    var store = document.getElementById('store-code').value;
-    if(store == ""){
-        alert("Please Enter Store code");
-        return 0;
-    }
-    var response;
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-        response =  this.responseText;	
-        // document.getElementById('loadingalert').style = "display:none";
-        if(response == "no result"){	
-        alert("Invalid store code. Please Try Again");
-        location.reload();			
-        }else{
-        var  storedetails = response.split("-");
-        // document.getElementById('btnsetstore').disabled = false;
-        location.reload();
-        }			
-    }
-    // document.getElementById('btnsetstore').disabled = true;
-    // document.getElementById('loadingalert').style = "display:block";
-    xhttp.open("GET", "controllers/get_store.php?check_store="+store);
-    xhttp.send();
+        var store = document.getElementById('store-code').value;
+        document.getElementById('loader-wrapper').style = 'display:flex';
+        if(store == ""){
+            alert("Please enter store code");
+            return 0;
+        }
+        var response;
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            response =  this.responseText;
+            if (response == "no result") {	
+                alert("Invalid store code. Please Try Again");
+                location.reload();			
+            } else {
+                var storedetails = response.split("-");
+                document.getElementById('save-btn').disabled = false;
+                location.reload();
+            }			
+        }
+        document.getElementById('save-btn').disabled = true;
+        xhttp.open("GET", "controllers/get_store.php?check_store=" + store);
+        xhttp.send();
     }
 </script>
 <script src="assets/js/animate.js"></script>

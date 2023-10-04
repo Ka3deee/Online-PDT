@@ -6,15 +6,31 @@
 :: Last Updated: 12-13-2017
 ---------------------------------------------- */
 
-/* Import CSS */
-
-@import 'css/others/animate.css';
-@import 'css/others/magnific-popup.css';
-@import 'css/others/owl.carousel.min.css';
-@import 'css/others/font-awesome.min.css';
-@import 'css/others/pe-icon-7-stroke.css';
-
 /* Base CSS */
+
+#loader-wrapper {
+    display: none;
+    align-items: center;
+}
+#loader {
+	float:left;
+	border: 5px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 5px solid #3498db;
+	width: 25px;
+	height: 25px;
+	-webkit-animation: spin 2s linear infinite; /* Safari */
+	animation: spin 2s linear infinite;
+    margin-right: 10px;
+}
+@-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
 
 #preloader {
     overflow: hidden;
@@ -26,7 +42,6 @@
     width: 100%;
     z-index: 99999;
 }
-
 #preloader .preload-icons {
     position: absolute;
     top: 50%;
@@ -40,7 +55,6 @@
     text-align: center;
     line-height: 50px;
 }
-
 .preload-icons > img {
     position: absolute;
     top: 50%;
@@ -48,7 +62,6 @@
     left: 50%;
     margin-left: -16px;
 }
-
 .caviar-load {
     -webkit-animation: 6000ms linear 0s normal none infinite running caviar-load;
     animation: 6000ms linear 0s normal none infinite running caviar-load;
@@ -77,7 +90,6 @@
         transform: rotate(360deg);
     }
 }
-
 @keyframes caviar-load {
     0% {
         -webkit-transform: rotate(0deg);
@@ -88,12 +100,10 @@
         transform: rotate(360deg);
     }
 }
-
 #preloader .preload-icons .preload-1 {
     -webkit-animation: 6000ms linear 0s normal none infinite running load-1;
     animation: 6000ms linear 0s normal none infinite running load-1;
 }
-
 @-webkit-keyframes load-1 {
     0% {
         opacity: 1;
@@ -112,7 +122,6 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
     }
 }
-
 @keyframes load-1 {
     0% {
         opacity: 1;
@@ -131,12 +140,10 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
     }
 }
-
 #preloader .preload-icons .preload-2 {
     -webkit-animation: 6000ms linear 0s normal none infinite running load-2;
     animation: 6000ms linear 0s normal none infinite running load-2;
 }
-
 @-webkit-keyframes load-2 {
     0% {
         opacity: 0;
@@ -163,7 +170,6 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
     }
 }
-
 @keyframes load-2 {
     0% {
         opacity: 0;
@@ -190,12 +196,10 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
     }
 }
-
 #preloader .preload-icons .preload-3 {
     -webkit-animation: 6000ms linear 0s normal none infinite running load-3;
     animation: 6000ms linear 0s normal none infinite running load-3;
 }
-
 @-webkit-keyframes load-3 {
     0% {
         opacity: 0;
@@ -218,7 +222,6 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
     }
 }
-
 @keyframes load-3 {
     0% {
         opacity: 0;

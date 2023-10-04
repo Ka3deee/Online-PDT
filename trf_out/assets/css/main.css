@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import "compass/css3";
     
 * { 
     box-sizing: border-box; 
@@ -61,8 +60,14 @@ body {
 	display: grid;
 	place-content: center;
 	border-radius: 5px;
+}
+.warning {
 	background: #ffad4256;
 	color: rgba(165, 42, 42, 0.752);
+}
+.success {
+	background: #5cb85cb4;
+	color: white;
 }
 input {
 	height: 35px;
