@@ -17,7 +17,7 @@ if file(trfolistfile)
 	
 	*browse
 	scan	
-				*xpolst = substr(this.parent.list1.list(x),1,16)
+			*xpolst = substr(this.parent.list1.list(x),1,16)
 			
 			xponum=trfoc.xdocno
 			xstornum=trfoc.xloc

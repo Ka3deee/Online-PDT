@@ -31,7 +31,20 @@ body {
     font-weight: bold;
 }
 .w {
-	width: 80vw;
+	width: 90vw;
+}
+.grid-2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
+.flex-between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.p-bot {
+	padding-bottom: 10px;
 }
 
 /*//* Components */
@@ -51,11 +64,11 @@ body {
 	font-size: 20px;
 }
 .btn:hover {
-    color: white;
     background: #286090;
 	cursor: pointer;
 }
 .msg {
+	font-size: 15px;
 	height: 35px;
 	display: grid;
 	place-content: center;
@@ -69,6 +82,10 @@ body {
 	background: #5cb85cb4;
 	color: white;
 }
+.error {
+    color: white;
+    background: rgba(203, 32, 32, 0.5);
+}
 input {
 	height: 35px;
 	border: 1px solid #337ab7;
@@ -78,4 +95,33 @@ input {
 	width: 100%;
 	text-align: center;
 	font-size: 18px;
+}
+/*//* Table */
+.tbl-wrap {
+	overflow: auto;
+    max-height: 515px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5); 
+    margin-bottom: 20px;
+}
+table .thead {
+    background: #c9dad8;
+    color: rgb(61,61,61);
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 100;
+}
+.thead-des {
+    padding: 15px;
+    text-align: left;
+}
+table .tbody {
+    background: #fcfcfc;
+    color: rgb(61,61,61);
+}
+.tbody-des {
+    padding: 15px 15px 0;
+    text-align: left;
 }

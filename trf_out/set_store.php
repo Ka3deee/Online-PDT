@@ -17,7 +17,7 @@
             <div class="display-center">
                 <img src="../resources/lcc.jpg" alt="LCC Logo">
             </div>
-            <h4 class="tc font mb">TRF Releasing</h4>
+            <h4 class="tc font mb">TRF Releasing : Set Store</h4>
             <h5 class="tc semi-visible">v1.0.0</h5>
             <br>
             <br>
@@ -30,7 +30,7 @@
                 <?php if (isset($_SESSION['store-code'])) { ?>
                     <div class="msg success"><?php echo $_SESSION['store-code'] . " - " . $_SESSION['store-loc']; ?></div>
                 <?php } else { ?>
-                    <div class="msg warning">Please set store first!</div>
+                    <div class="msg warning">Please set store code</div>
                 <?php } ?>
             </div>  
             <div class="mb w">
@@ -38,7 +38,7 @@
                 <input maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" class="btn-lg" id="store-code" type="text">
             </div>
             <div class="mb w">
-                <button class="btn btn-lg" onclick="Checkstore()" id="save-btn">Save</button>
+                <button class="btn btn-lg" onclick="CheckStore()" id="save-btn">Save</button>
             </div>
             </div>
             <div class="mb w">
@@ -52,7 +52,7 @@
     </div>
 </body>
 <script>
-    function Checkstore(){
+    function CheckStore(){
         var store = document.getElementById('store-code').value;
         document.getElementById('loader-wrapper').style = 'display:flex';
         if(store == ""){
