@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+    include('controllers/get_users.php'); 
+    unset($_SESSION['msg']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,48 +26,42 @@
             <br>
         </div>
         <div class="display-center">
-            <div id="loader-wrapper" class="mb w">
-                <div id="loader"></div><strong>Checking user... Please wait...</strong>
-            </div>
-            <div class="mb w">
-                <div class="msg warning">Please set a user</div>
-            </div>  
-            <div class="mb w">
-                <label for="ee-no">EE No.</label>
-                <input class="btn-lg" id="ee-no" type="text">
-            </div>
-            <div class="mb w">
-                <label for="password">Password</label>
-                <input class="btn-lg" id="password" type="password">
-            </div>
-            <div class="mb w">
-                <button class="btn btn-lg" id="save-btn">Set</button>
-            </div>
-            <div class="mb w">
-                <button onclick="CheckAdmin()" class="btn btn-lg" id="maintenance-btn">User Maintenance</button>
-            </div>
-            </div>
-            <div class="mb w">
-                <button onclick="window.location.href='../trf_out/index.php'" class="btn btn-lg">Back</button>
-            </div>
+            <form id="set-user">
+                <div id="loader-wrapper" class="mb w">
+                    <div id="loader"></div><strong>Checking user... Please wait...</strong>
+                </div>
+                <div class="mb w">
+                    <?php include('controllers/helpers/user.php'); ?>
+                </div>  
+                <div class="mb w tc">
+                    <label for="employee_no">EE No.</label>
+                    <input class="btn-lg" maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" name="employee_no" id="employee_no" type="text">
+                </div>
+                <div class="mb w tc">
+                    <label for="password">Password</label>
+                    <input class="btn-lg" name="password" id="password" type="password">
+                </div>
+                <div class="mb w">
+                    <button onclick="SetUser()" type="submit" class="btn btn-lg primary">Set</button>
+                </div>
+                <div class="mb w">
+                    <button onclick="CheckAdmin()" type="button" class="btn btn-lg primary" id="maintenance-btn">User Maintenance</button>
+                </div>
+                </div>
+                <div class="mb w">
+                    <button onclick="window.location.href='../trf_out/index.php'" type="button" class="btn btn-lg primary">Back</button>
+                </div>
+            </form>
+            <div id="response"></div>
         </div>
 
         <div id="preloader">
             <div class="caviar-load"></div>
         </div>
     </div>
+    <br>
+    <br>
 </body>
-<script>
-    function CheckAdmin(){
-		let code = prompt("Enter Administrator Passcode");
-		if (code != null) {
-			if(code  == '13791379'){
-				window.location.href="user_maintenance.php";
-			}else{
-				alert("Invalid Passcode, Please try again");
-			}
-        }
-	}
-</script>
+<script src="assets/js/validate.js"></script>
 <script src="assets/js/animate.js"></script>
 </html>

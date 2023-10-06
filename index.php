@@ -1,3 +1,10 @@
+<?php
+session_start();
+unset($_SESSION['store-code']);
+unset($_SESSION['employee_no']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +25,7 @@
     font-weight:bold;
   }
   </style>
+
 </head>  
 <body >
 <br><br>

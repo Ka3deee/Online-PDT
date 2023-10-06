@@ -1,3 +1,25 @@
+function toggleModal() {
+    const modal = document.getElementById('modal');
+  
+    if (modal.style.display === 'block') {
+
+      modal.style.transition = 'opacity 0.5s';
+      modal.style.opacity = '0';
+      setTimeout(function () {
+        modal.style.display = 'none';
+      }, 300);
+
+    } else {
+
+      modal.style.display = 'block';
+      setTimeout(function () {
+        modal.style.transition = 'opacity 0.5s';
+        modal.style.opacity = '1';
+      }, 0);
+    }
+  }
+  
+  
 window.addEventListener('load', function () {
     var preloader = document.getElementById('preloader');
     
@@ -10,3 +32,4 @@ window.addEventListener('load', function () {
         });
     }
 });
+

@@ -27,22 +27,18 @@
                 <div id="loader"></div><strong>Checking store code... Please wait...</strong>
             </div>
             <div class="mb w">
-                <?php if (isset($_SESSION['store-code'])) { ?>
-                    <div class="msg success"><?php echo $_SESSION['store-code'] . " - " . $_SESSION['store-loc']; ?></div>
-                <?php } else { ?>
-                    <div class="msg warning">Please set store code</div>
-                <?php } ?>
+                <?php include('controllers/helpers/store.php'); ?>
             </div>  
-            <div class="mb w">
-                <label for="store-code"></label>
+            <div class="mb w tc">
+                <label for="store-code">Store Code</label>
                 <input maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" class="btn-lg" id="store-code" type="text">
             </div>
             <div class="mb w">
-                <button class="btn btn-lg" onclick="CheckStore()" id="save-btn">Save</button>
+                <button class="btn btn-lg primary" onclick="CheckStore()" id="save-btn">Save</button>
             </div>
             </div>
             <div class="mb w">
-                <button onclick="window.location.href='../trf_out/index.php'" class="btn btn-lg">Back</button>
+                <button onclick="window.location.href='../trf_out/index.php'" class="btn btn-lg primary">Back</button>
             </div>
         </div>
 
@@ -50,32 +46,9 @@
             <div class="caviar-load"></div>
         </div>
     </div>
+    <br>
+    <br>
 </body>
-<script>
-    function CheckStore(){
-        var store = document.getElementById('store-code').value;
-        document.getElementById('loader-wrapper').style = 'display:flex';
-        if(store == ""){
-            alert("Please enter store code");
-            return 0;
-        }
-        var response;
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function() {
-            response =  this.responseText;
-            if (response == "no result") {	
-                alert("Invalid store code. Please Try Again");
-                location.reload();			
-            } else {
-                var storedetails = response.split("-");
-                document.getElementById('save-btn').disabled = false;
-                location.reload();
-            }			
-        }
-        document.getElementById('save-btn').disabled = true;
-        xhttp.open("GET", "controllers/get_store.php?check_store=" + store);
-        xhttp.send();
-    }
-</script>
+<script src="assets/js/validate.js"></script>
 <script src="assets/js/animate.js"></script>
 </html>

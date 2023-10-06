@@ -1,7 +1,7 @@
 <?php
 
 $host = "192.168.0.40";
-$db_name = "mmsmrlib"; 
+$db_name = "mmsmtsml"; 
 $username = "studentwhs";
 $password = "studentwhs";   
 $conn_m = null;
