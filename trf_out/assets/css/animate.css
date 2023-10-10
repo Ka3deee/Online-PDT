@@ -12,7 +12,11 @@
     display: none;
     align-items: center;
 }
-#loader {
+#loader-modal {
+    display: none;
+    align-items: center;
+}
+.loader {
 	float:left;
 	border: 5px solid #f3f3f3;
 	border-radius: 50%;

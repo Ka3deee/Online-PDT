@@ -3,8 +3,9 @@
 if (isset($_REQUEST['check_store'])) {
     session_start();
     date_default_timezone_set('Asia/Manila');
+    include('../path.php');
+    include(ROOT_PATH . "/databases/connect_mms.php");
     $store = $_REQUEST['check_store'];
-    include("../database/connect_mms.php");
     $odbc_statement = "SELECT strnum,strnam FROM tblstr where strnum='$store'";
     $result = odbc_exec($conn_m, $odbc_statement);
     $ifhasrow = false;

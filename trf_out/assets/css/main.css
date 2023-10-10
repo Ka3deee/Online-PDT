@@ -47,15 +47,31 @@ body {
 .w {
 	width: 90vw;
 }
+.w-sm {
+	width: 60vw;
+}
+.w-md {
+	width: 75vw;
+}
 .grid-2 {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 10px;
 }
-.flex-between {
+.flex {
 	display: flex;
-	justify-content: space-between;
+}
+.flex-col {
+	flex-direction: column;
+}
+.a-center {
 	align-items: center;
+}
+.j-between {
+	justify-content: space-between;
+}
+.j-center {
+	justify-content: center;
 }
 .p-bot {
 	padding-bottom: 10px;
@@ -83,8 +99,6 @@ body {
 .msg {
 	font-size: 15px;
 	height: 35px;
-	display: grid;
-	place-content: center;
 	border-radius: 5px;
 }
 .primary {
@@ -162,7 +176,7 @@ table .tbody {
 }
 .add-user {
 	background: white;
-	height: 500px;
+	height: auto;
 	width: 40%;
 	padding: 30px;
 	margin: 100px auto;
@@ -183,13 +197,26 @@ table .tbody {
 	right: 10px;
 	top: 10px;
 }
+.textarea {
+	border: 1px solid #337ab7;
+	border-radius: 5px;
+	outline: none;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.textarea:focus {
+	border-color: #80bdff;
+	outline: 0;
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
 
 /*//* All media queries */
 @media only screen and (max-width: 400px) {
 	.add-user {
 		margin: 75px auto;
 		width: 320px;
-		height: 500px;
 	}
 }
 
@@ -197,6 +224,5 @@ table .tbody {
 	.add-user {
 		margin: 50px auto;
 		width: 300px;
-		height: auto;
 	}
 }

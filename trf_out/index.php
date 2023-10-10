@@ -1,7 +1,8 @@
 <?php 
-    session_start(); 
-    include('controllers/validate.php');
-    include('database/connect_mms.php');
+    session_start();
+    include('path.php');
+    include(ROOT_PATH . '/controllers/validate.php');
+    include(ROOT_PATH . '/databases/connect_mms.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="shortcut icon" href="assets/images/favicon.ico"/>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/animate.css">
 </head>
@@ -20,7 +21,7 @@
     <div class="display-center">
         <div class="display-center"> 
             <div class="display-center mb">
-                <img src="../resources/lcc.jpg" alt="LCC Logo">
+                <img src="assets/images/lcc.jpg" alt="LCC Logo">
             </div>
             <h4 class="tc font">TRF Releasing</h4>
             <h5 class="tc semi-visible">v1.0.0</h5>
@@ -29,29 +30,27 @@
         </div>
         <div class="display-center">            
             <div class="mb w">
-                <?php include('controllers/helpers/store.php'); ?>
+                <?php include(ROOT_PATH . '/controllers/helpers/store.php'); ?>
             </div>         
             <div class="mb w">
-                <?php include('controllers/helpers/user.php'); ?>
+                <?php include(ROOT_PATH . '/controllers/helpers/user.php'); ?>
             </div>
             <div class="mb w grid-2">
-                <button onclick="window.location.href='set_store.php'" class="btn primary p-hover btn-md">Set Store</button>
-                <button onclick="window.location.href='set_user.php'" class="btn primary p-hover btn-md">Set User</button>
+                <button onclick="window.location.href='pages/set_store.php'" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="storefront"></ion-icon>&nbsp;&nbsp; Set Store</button>
+                <button onclick="window.location.href='pages/set_user.php'" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="person"></ion-icon>&nbsp;&nbsp; Set User</button>
             </div>
             <div class="mb w">
-                <button onclick="StoreIsSet()" class="btn primary p-hover btn-md">Download Transfer Out Data</button>
+                <button onclick="openDownload()" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="cloud-download"></ion-icon>&nbsp;&nbsp; TRF Out Data Download</button>
             </div>
             <div class="mb w">
-                <button onclick="alert('Coming soon...')" class="btn primary p-hover btn-md">Manual Recording</button>
+                <button onclick="alert('Coming soon...')" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="scan"></ion-icon>&nbsp;&nbsp; Scan Items</button>
             </div>
             <div class="mb w">
-                <button onclick="alert('Coming soon...')" class="btn primary p-hover btn-md">Export PDF</button>
+                <button onclick="alert('Coming soon...')" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="print"></ion-icon>&nbsp;&nbsp; Export PDF</button>
             </div>
             <div class="mb w">
-                <button onclick="window.location.href='../smr.php'" class="btn primary p-hover btn-md">Exit</button>
+                <button onclick="window.location.href='../smr.php'" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="arrow-back-circle"></ion-icon>&nbsp;&nbsp; Exit</button>
             </div>
-            <br>
-            <hr>
             <br>
             <div class="tc semi-visible">
                 <h5>Date updated: 2023 October</h5>
@@ -68,4 +67,6 @@
 
 <script src="assets/js/animate.js"></script>
 <script src="assets/js/validate.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </html>

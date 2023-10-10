@@ -1,5 +1,5 @@
 <?php
-include('connect_mysql.php');
+require('connect_mysql.php');
 
 function dd($value)
 {
@@ -63,6 +63,34 @@ function selectOne($table, $conditions)
      $records = $stmt->get_result()->fetch_assoc();
      return $records;
 }
+
+function update($table, $id, $data) {
+     global $conn;
+     $sql = "UPDATE $table SET ";
+ 
+     $i = 0;
+     foreach ($data as $key => $value) {
+          if ($i === 0) {
+               $sql = $sql . " $key=?";
+          } else {
+               $sql = $sql . ", $key=?";
+          }
+          $i++;
+     }
+ 
+     $sql = $sql . " WHERE id=?";
+     $data['id'] = $id;
+     $stmt = executeQuery($sql, $data);
+     return $stmt->affected_rows;
+} 
+
+function delete($table, $id) {
+     global $conn;
+     $sql = "DELETE FROM $table WHERE id=?";
+ 
+     $stmt = executeQuery($sql, ['id' => $id]);
+     return $stmt->affected_rows;
+ }
 
 function selectAll($table, $conditions = [])
 {
