@@ -1,3 +1,9 @@
+<?php
+session_start();
+unset($_SESSION['store-code']);
+unset($_SESSION['employee_no']);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +32,7 @@
     <button type="button" onclick = "window.location.href='trf_out/index.php'" class="btn btn-primary btn-lg btn-block">TRF Releasing <span class="trf-span">( Out )</span></button>
 		<button type="button" class="btn btn-primary btn-lg btn-block" onclick = "alert('Coming Soon')">Shelf Tag Data Collection</button>
     
-	  <button type="button" class="btn btn-primary btn-lg btn-block" onclick = "window.location.href='index.php'">
+	  <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href='index.php'">
       <span class="glyphicon glyphicon-log-out"></span> Back
     </button>
 	</div>

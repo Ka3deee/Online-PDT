@@ -209,7 +209,6 @@ if(isset($_REQUEST["xstrings"])){
 				$conn->rollBack();            
 			echo $exception->getMessage();
 			}
-			
 		}
 	}
 	//show result to user

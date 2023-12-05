@@ -28,15 +28,12 @@
             <br>
             <br>
         </div>
-        <div class="display-center">            
-            <div class="mb w">
-                <?php include(ROOT_PATH . '/controllers/helpers/store.php'); ?>
-            </div>         
+        <div class="display-center">
             <div class="mb w">
                 <?php include(ROOT_PATH . '/controllers/helpers/user.php'); ?>
             </div>
-            <div class="mb w grid-2">
-                <button onclick="window.location.href='pages/set_store.php'" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="storefront"></ion-icon>&nbsp;&nbsp; Set Store</button>
+            <div class="mb w">
+                <!-- <button onclick="window.location.href='pages/set_store.php'" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="storefront"></ion-icon>&nbsp;&nbsp; Set Store</button> -->
                 <button onclick="window.location.href='pages/set_user.php'" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="person"></ion-icon>&nbsp;&nbsp; Set User</button>
             </div>
             <div class="mb w">
@@ -49,7 +46,7 @@
                 <button onclick="alert('Coming soon...')" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="print"></ion-icon>&nbsp;&nbsp; Export PDF</button>
             </div>
             <div class="mb w">
-                <button onclick="window.location.href='../smr.php'" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="arrow-back-circle"></ion-icon>&nbsp;&nbsp; Exit</button>
+                <button onclick="confirmExit()" class="btn primary p-hover btn-md flex a-center j-center"><ion-icon name="arrow-back-circle"></ion-icon>&nbsp;&nbsp; Exit</button>
             </div>
             <br>
             <div class="tc semi-visible">

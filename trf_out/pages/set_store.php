@@ -33,15 +33,15 @@
                 <?php include(ROOT_PATH . '/controllers/helpers/store.php'); ?>
             </div>  
             <div class="mb w tc">
-                <label for="store-code">Store Code</label>
-                <input maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" class="btn-lg" id="store-code" type="text">
+                <label for="store-num">Store Code</label>
+                <input maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" class="btn-lg" id="store-num" name="store-num" type="text">
             </div>
             <div class="mb w">
                 <button class="btn btn-lg primary flex a-center j-center" onclick="CheckStore()" id="save-btn"><ion-icon name="checkmark"></ion-icon>&nbsp; Set</button>
             </div>
             </div>
             <div class="mb w">
-                <button onclick="window.location.href='../../trf_out/index.php'" class="btn btn-lg primary flex a-center j-center"><ion-icon name="arrow-undo"></ion-icon>&nbsp; Back</button>
+                <button onclick="window.location.href='trfout_download.php'" class="btn btn-lg primary flex a-center j-center"><ion-icon name="arrow-undo"></ion-icon>&nbsp; Back</button>
             </div>
         </div>
 

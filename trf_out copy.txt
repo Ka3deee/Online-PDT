@@ -1,21 +1,9 @@
 trfolistfile = xdevpathfull + '\trfolist.txt'
 if file(trfolistfile)
-	thisform.timer1.enabled = .f.	
-	clos table all		
-	
-	delete file c:\pdtsystem\mmspick.dbf
-	delete file c:\pdtsystem\pickupc.dbf
-	
-	delete file xdevpathfull + '\trfrls.txt'
-	delete file xdevpathfull + '\trfrls1.txt'
-	delete file xdevpathfull + '\trfrlsok.txt'		
 
 	create cursor trfoc( xloc num(5,0) , xdocno num(6,0))
 	select trfoc
-	appe from xdevpathfull + '\trfolist.txt' type sdf
-	*appe from  type deli with blank	
-	
-	*browse
+
 	scan	
 			*xpolst = substr(this.parent.list1.list(x),1,16)
 				
@@ -24,9 +12,9 @@ if file(trfolistfile)
 			
 			m_pickexist=pickexist(xponum,xstornum)
 			if m_pickexist > 0								
-				*messageb("pick exist" + str(m_pickexist))				
+		
 				if m_pickexist = 1
-					*messageb("pick exist processing")				
+			
 					sqlp(gnConnHandle,'call MMSMtsml.sp_pick(?xponum,?xstornum)','tmpcur')
 					sqle(gnConnHandle)
 					sqlp(gnConnHandle,'call MMSMtsml.sp_pick1(?xponum,?xstornum)','tmpcurx1')
@@ -42,29 +30,7 @@ if file(trfolistfile)
 						select inumbr,iupc from tmpcur into table c:\pdtsystem\cursr2				
 						sele cursrx1			
 						recxcnt = alltr(str(reccount()))								
-						sele cursr1			
-						if !file('c:\pdtsystem\mmspick.dbf')
-						    copy to  c:\pdtsystem\mmspick type foxp
-						    	use c:\pdtsystem\mmspick in 0									
-						    	select mmspick
-						    	zap
-						    	appe from c:\pdtsystem\cursrx1							
-						    set safe on
-						else
-							if !used('MMSPick')
-								use c:\pdtsystem\mmspick in 0									
-							endif
-							sele mmspick							
-							appe from c:\pdtsystem\cursrx1				
-					    endif		  
-					      
-					    sele cursr2
-					    if !file('c:\pdtsystem\pickupc.dbf')
-					    	set safe off
-						    copy to  c:\pdtsystem\pickupc type foxp    				    
-						    set safe on							    
-					    endif
-		  
+						
 					    select cursr1
 					    scan
 					    	xxnumb=cursr1.inumbr		    	

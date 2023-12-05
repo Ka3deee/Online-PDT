@@ -27,9 +27,16 @@ window.addEventListener('load', function () {
         preloader.style.transition = 'opacity 0.5s ease';
         preloader.style.opacity = '0';
 
+
         preloader.addEventListener('transitionend', function () {
             preloader.remove();
         });
+    }
+
+    var trf = sessionStorage.getItem('trfOutList');
+    var trfOutList = document.getElementById("trf-out-list");
+    if (trfOutList) {
+        trfOutList.value = trf;
     }
 });
 

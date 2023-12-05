@@ -58,6 +58,11 @@ body {
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 10px;
 }
+.grid-auto {
+	display: grid;
+	grid-template-columns: auto 40px;
+	grid-gap: 10px;
+}
 .flex {
 	display: flex;
 }
@@ -94,6 +99,9 @@ body {
 }
 .btn-lg {
 	height: 45px;
+	font-size: 20px;
+}
+.btn-vt {
 	font-size: 20px;
 }
 .msg {
@@ -217,6 +225,9 @@ table .tbody {
 	.add-user {
 		margin: 75px auto;
 		width: 320px;
+	}
+	.w-md {
+		width: 90vw;
 	}
 }
 
