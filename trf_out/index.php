@@ -23,7 +23,7 @@
             <div class="display-center">
                 <img src="assets/images/lcc.jpg" alt="LCC Logo">
             </div>
-            <h4 class="tc font mb">TRF Releasing (Out)</h4>
+            <h4 class="tc font mb">TRF Releasing (0ut)</h4>
             <h5 class="tc semi-visible">v2.0.0</h5>
             <br>
             <br>
@@ -44,7 +44,7 @@
             <br>
             <div class="tc semi-visible">
                 <h5>Version: 2023 December</h5>
-                <h6>Version Update: 2025 September</h6>
+                <h6>Version Update: September</h6>
             </div>
         </main>
         <div id="preloader">
