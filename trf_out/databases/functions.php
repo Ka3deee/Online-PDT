@@ -120,4 +120,58 @@ function selectAll($table, $conditions = [])
     }
 }
 
+function selectAllPick($table, $conditions = [])
+{
+     global $conn;
+     
+     //$sql = "SELECT * FROM $table WHERE username=?, email=?;"
+     $sql = "SELECT * FROM $table";
+     if (empty($conditions)) {
+          $sql .= " GROUP BY whmove, inumbr, strnum";
+          $stmt = $conn->prepare($sql);
+          $stmt->execute();
+          $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+          return $records;
+     } else { 
+          $i = 0;
+          foreach ($conditions as $key => $value) {
+               if ($i === 0) {
+                    $sql = $sql . " WHERE $key=?";
+               } else {
+                    $sql = $sql . " AND $key=?";
+               }
+               $i++;
+          }
+
+          $sql .= " GROUP BY whmove, inumbr, strnum";
+          $stmt = executeQuery($sql, $conditions);
+          $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+          return $records;
+     }
+}
+
+function selectAllId($table, $conditions = [])
+{
+    global $conn;
+
+    // Select all records if no conditions are provided
+    if (empty($conditions)) {
+        $sql = "SELECT * FROM $table";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $records;
+    } else {
+        // Build the WHERE clause for id IN ($conditions)
+        $placeholders = str_repeat('?,', count($conditions) - 1) . '?';
+        $sql = "SELECT * FROM $table WHERE id IN ($placeholders)";
+
+        // Execute the query
+        $stmt = executeQuery($sql, $conditions);
+        $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $records;
+    }
+}
+
+
 ?>

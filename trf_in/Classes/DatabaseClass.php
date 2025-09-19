@@ -6,11 +6,13 @@ class DatabaseClass
 
     
 	
+    //private $mysql_host_ip    = "localhost";
     private $mysql_host_ip    = "localhost";
     private $mysql_uname      = "smrapp123";
     private $mysql_pass       = "123";
     private $mysql_dbase      = "trfin_db";
 
+    private $mysqlconn;
 
 
 
@@ -43,7 +45,8 @@ class DatabaseClass
     }  
     
     //fetching rows
-    public function mysql_get_rows($fields, $id = NULL, $tablename = NULL, $like)
+    //public function mysql_get_rows($fields, $id = NULL, $tablename = NULL, $like)
+    public function mysql_get_rows($fields, $like , $id = NULL, $tablename = NULL)
     {
         $col = empty($fields) ? '*' : implode(',',$fields);
         $id = empty($id) ? '' : ' WHERE '.$id;
@@ -623,6 +626,40 @@ class DatabaseClass
             return true;
         }        
     }
+
+    public function getTransferAll($str, $mtr){
+        $sql = "select c.mtr_no as lcmtrno, a.trfbch as lctrfbch,a.rcvqty as lcqty, a.inumbr as lcsku from ".$str."_received_batch_trf_tbl as a left join ".$str."_iupc_tbl as b on a.inumbr = b.inumbr left join ".$str."_mtrdata_tbl as c on a.trfbch = c.transfer_no where c.mtr_no ='".$mtr."'";
+        $result = mysqli_query($this->mysqlconn,$sql);
+        $row = mysqli_fetch_assoc($result);
+        $json = array();
+
+
+        while($row = mysqli_fetch_assoc($result)){
+            $json[] = ['lcmtrno'=>$row['lcmtrno'],'lctrfbch'=>$row['lctrfbch'],'lcqty'=>$row['lcqty'],'lcsku'=>$row['lcsku']];
+        }
+
+        return $json;
+    }
+
+    public function getMTRs($str){
+        $sql = "SELECT DISTINCT mtr_no from `".$str."_mtrdata_tbl`";
+        $result = mysqli_query($this->mysqlconn,$sql);
+        $json = array();
+        while($row = mysqli_fetch_assoc($result)){
+            $json[] = ['mtr_no'=>$row['mtr_no']];
+        }
+
+        return $json;
+    }
+
+    public function createMTRTable($str){
+        $tblnam = $str.'_mtrdata_tbl';
+        if($this->isTableExist($tblnam) == false){
+            $sql = "CREATE TABLE `".$str."_mtrdata_tbl` (id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY (id)) ENGINE=InnoDB SELECT * FROM `mtrdata_tbl`"; 
+            mysqli_query($this->mysqlconn,$sql);
+        }
+    }
+
 
     // =============== METHOD END FOR MYSQL ================= //
 

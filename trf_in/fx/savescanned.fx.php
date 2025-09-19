@@ -20,6 +20,7 @@ if(isset($_GET['trfbchid'])){
         $ip = "";
         if($type == 'Android'){
             $ip = $_SERVER['REMOTE_ADDR'];
+			//$ip = readtxtfile();
         }else{
             $ip = readtxtfile();
         }

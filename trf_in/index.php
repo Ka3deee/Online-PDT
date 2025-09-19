@@ -11,7 +11,7 @@ include('fx/getOStype.php');
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/mycss.css">
     <link href="../css/addedcss.css" rel="stylesheet">
-    <link href="../css/modify.css" rel="stylesheet">
+    --<link href="../css/modify.css" rel="stylesheet">
 </head>
 <body>
     <div class="container text-center"> 
@@ -92,7 +92,7 @@ include('fx/getOStype.php');
         </div>
 
         <?php if($type == 'Android'){?>   
-        <div class="row" style="margin-bottom:5px;display:none;">
+        <div class="row" style="margin-bottom:5px;">
             <div class="col"><a href="downloadtrfbch.php" class="btn btn-sm trf-btn">Download Transfer Data</a></div>
         </div>         
         <div class="row" style="margin-bottom:5px">
@@ -114,6 +114,9 @@ include('fx/getOStype.php');
         <div class="row mb-1">
             <div class="col"><a href="#" class="btn btn-sm viewpdf trf-btn">Export PDF</a></div>
         </div>      
+        <div class="row" style="margin-bottom:5px">
+            <div class="col"><a href="upload.php" class="btn btn-sm trf-btn">Upload to MMS</a></div>
+        </div>
         <div class="row mb-1">
             <div class="col"><button type="button" id="upload-po-data" class="btn btn-sm trf-btn">Upload Transfer Data</button></div>
         </div>

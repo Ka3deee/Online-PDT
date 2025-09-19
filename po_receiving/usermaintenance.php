@@ -193,7 +193,7 @@ if(isset($_POST['btnsetuser'])){
 		<button type="submit" class="btn btn-danger btn-lg btn-block" name = "btnremoveuser">Yes! Remove User</button>
 		</form>
 	</div>
-</div>
+  </div>
 
 </div>
 </body>

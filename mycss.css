@@ -8,10 +8,9 @@
 
 /* Fonts */
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Work+Sans:400,500,600,700');
+/* @import url('css/googleapis.css'); */
 
 /* Import CSS */
-
 @import 'css/others/animate.css';
 @import 'css/others/magnific-popup.css';
 @import 'css/others/owl.carousel.min.css';

@@ -16,40 +16,32 @@
     <link rel="bookmark" href="../images/favicon.ico"/>
     <link rel="stylesheet" href="../bootstrap-3.4.1-dist/css/bootstrap.min.css">
     <!---   Content Styles -->
-    <link href="../css/modify.css" rel="stylesheet">
-    <link href="../css/addedcss.css" rel="stylesheet">
     <link href="../mycss.css" rel="stylesheet">
 </head>  
 <body >
 
 <div class="container text-center">
-    <br><br>
-    <img src="../resources/lcc.png" style="width: 90px; height: 70px;">
-    <h4>DS Applications</h4>
-    <br>
-    <!-- <h5><strong>Welcome <?php echo $_SESSION['wms_status_user'] ?></strong></h5> -->
-    <br>
+    <img src="../resources/lcc.png">
+    <h4>LCC Data Terminal Applications</h4>
+    <h5><strong>Welcome <?php echo $_SESSION['wms_status_user'] ?></strong></h5>
 
     <div style="margin-bottom: 13px;">
         <button type="button" class="btn btn-primary btn-md btn-block" onclick="window.location.href='./mssr'">MSSR Receiving</button>
         <button type="button" class="btn btn-primary btn-md btn-block" onclick="window.location.href='./direct_receiving'">Direct Receiving</button>
         <button type="button" class="btn btn-primary btn-md btn-block" onclick="window.location.href='./trf'">TRF Line Inspection</button>
         <button type="button" class="btn btn-primary btn-md btn-block" onclick="window.location.href='./direct_line_inspection'">Direct Line Inspection</button>
-        
-        <!-- <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href='./direct_receiving'">PO Receiving</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href='./mssr'">TRF Receiving</button> -->
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href='./report_exception'">Report Exception</button>
+        <button type="button" class="btn btn-primary btn-md btn-block" onclick="window.location.href='./report_exception'">Report Exception</button>
     </div>
-    <br><br>
+
     <div>
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href='?change_server'">
+        <button type="button" class="btn btn-primary btn-md btn-block" onclick="window.location.href='?change_server'">
             <span class="glyphicon glyphicon-home"></span> Change Server
         </button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href='?change_user'">
+        <button type="button" class="btn btn-primary btn-md btn-block" onclick="window.location.href='?change_user'">
             <span class="glyphicon glyphicon-user"></span> Change User
         </button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="window.location.href='../'">
-            <span class="glyphicon glyphicon-log-out"></span> Back
+        <button type="button" class="btn btn-primary btn-md btn-block" onclick="window.location.href='../'">
+            <span class="glyphicon glyphicon-log-out"></span> Back to Menu
         </button>
     </div>
 </div>

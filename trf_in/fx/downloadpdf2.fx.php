@@ -22,8 +22,9 @@ echo '<style>
 
 echo '<script>parent.document.getElementById("spantext").innerHTML = "Making PDF...Started...";</script>';
 
-$path = '../TransferIN_PDF/';
+
 $str = $_SESSION['strcode'];
+$path = '../TransferIN_PDF/'.$str;
 $trfbchs = $_REQUEST['q'];
 
 $trfbcharray = explode(",",$trfbchs);

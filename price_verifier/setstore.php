@@ -12,8 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../bootstrap-3.4.1-dist/css/bootstrap.min.css">
 
-<!---   Content Styles -->
-<link href="../mycss.css" rel="stylesheet">
+  <!---   Content Styles -->
+  <link href="../mycss.css" rel="stylesheet">
+  <link href="../css/modify.css" rel="stylesheet">
+  <link href="../css/addedcss.css" rel="stylesheet">
   <style>
   .fontTitle{
 	  font-size:10pt;
@@ -44,33 +46,31 @@
   </style>
 </head> 
 <body>
-<div class="container" style = "padding-top:10px;text-align:center;">
+<div class="container text-center">
 	<img src="../resources/lcc.jpg" style="width: 120px; height: 100%;">
-		<div class="row">
-		  <div class="col-xs-12">
-			  <label for="ex1">Please Set Store Code</label>
-      
-        <div class="form-group">
-          <input  maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" value = "<?php if(isset($_SESSION['price_storecode']) ){ echo $_SESSION['price_storecode']; } ?>"style = "text-align:center !important;"  class="form-control input-lg" name="txtstorecode"  id="txtstorecode" type="text" autofocus >			
-          <?php
-            if(isset($_SESSION['price_storecode']) ){
-              ?><div id = "promptalert" style = "font-size:1em;" class="alert alert-success alert-dismissible fade in">
-              <strong></strong><b ><?php echo $_SESSION['price_storeloc'];?></b>
-            </div><?php
-          }
-          
-          ?>
-            <div id = "loadingalert" style = "display:none;font-size:1.5em;"  class="alert alert-info">
-              <div class="loader"></div> <strong style = "margin-left:10px;">Please Wait.. Checking Store Code..</strong> 
-            </div>
+	<h4>Price Verifier : Set Store</h4>
+  <br><br>
+  <div class="row">
+    <div class="col-xs-12">
+      <label for="ex1">Store Code</label>
+    
+      <div class="form-group">
+        <input  maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" value = "<?php if(isset($_SESSION['price_storecode']) ){ echo $_SESSION['price_storecode']; } ?>"style = "text-align:center !important;"  class="form-control input-lg" name="txtstorecode"  id="txtstorecode" type="text" autofocus >			
+        <?php if(isset($_SESSION['price_storecode']) ) { ?>
+          <div id = "promptalert" style = "font-size:1em;" class="alert alert-success alert-dismissible fade in">
+            <strong></strong><b ><?php echo $_SESSION['price_storeloc'];?></b>
+          </div>
+        <?php } ?>
+        <div id = "loadingalert" style = "display:none;font-size:1.5em;"  class="alert alert-info">
+          <div class="loader"></div> <strong style = "margin-left:10px;">Please Wait.. Checking Store Code..</strong> 
         </div>
-			 </div>
-		  
-		</div>
-	  <br>
-	<div class="container text-center">
-		<button type="button" class="btn btn-primary btn-lg btn-block" onclick = "Checkstore()" name = "btnsetstore" id = "btnsetstore" >Set Store Code</button>
-		<button type="button" class="btn btn-primary btn-lg btn-block" onclick = "window.location.href='priceverifier.php'"><span class="glyphicon glyphicon-log-out"></span> Back to Menu</button>
+      </div>
+      </div>
+  </div>
+  <br>
+	<div>
+		<button type="button" class="btn btn-primary btn-lg btn-block" onclick = "Checkstore()" name = "btnsetstore" id = "btnsetstore" >Save</button>
+		<button type="button" class="btn btn-primary btn-lg btn-block" onclick = "window.location.href='priceverifier.php'"><span class="glyphicon glyphicon-log-out"></span> Back</button>
 	</div>
 </div>
 <div id="preloader">

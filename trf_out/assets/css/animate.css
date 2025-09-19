@@ -20,6 +20,29 @@
     display: none;
     align-items: center;
 }
+#loader-upload {
+    display: none;
+    align-items: center;
+}
+#progress-container {
+    height: 18px;
+    width: 75vw;
+    margin: 10px 0;
+    border: 1px solid #5cb85cb4;
+    border-radius: 5px;
+}
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    color: white;
+    background: #5cb85cb4;
+    font-size: smaller;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 700ms;
+    transition-delay: 300ms;
+}
+
 .loader {
 	float:left;
 	border: 5px solid #f3f3f3;
@@ -31,6 +54,7 @@
 	animation: spin 2s linear infinite;
     margin-right: 10px;
 }
+
 @-webkit-keyframes spin {
 	0% { -webkit-transform: rotate(0deg); }
 	100% { -webkit-transform: rotate(360deg); }

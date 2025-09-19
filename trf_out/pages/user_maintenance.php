@@ -16,16 +16,16 @@
 
 <body>
     <div class="display-center pos-rel">
-        <div class="display-center"> 
+        <header class="display-center"> 
             <div class="display-center">
                 <img src="../assets/images/lcc.jpg" alt="LCC Logo">
             </div>
             <h4 class="tc font mb">TRF Releasing : User Maintenance</h4>
-            <h5 class="tc semi-visible">v1.0.0</h5>
+            <h5 class="tc semi-visible">v2.0.0</h5>
             <br>
             <br>
-        </div>
-        <div class="display-center">
+        </header>
+        <main class="display-center">
             <div id="loader-wrapper" class="mb w">
                 <div class="loader"></div><strong>Deleting user... Please wait...</strong>
             </div>
@@ -57,7 +57,7 @@
             <div class="mb w">
                 <button onclick="window.location.href='set_user.php'" class="btn btn-lg primary"><ion-icon name="arrow-undo"></ion-icon>&nbsp; Back</button>
             </div>
-        </div>
+        </main>
 
         <div id="preloader">
             <div class="caviar-load"></div>
@@ -69,16 +69,15 @@
                     <h4 class="mb bold flex a-center j-center"><ion-icon name="person-add"></ion-icon>&nbsp;<span class="bold modal-title" id="modal-title"></span>&nbsp;User</h4>
                     <label for="firstname">Firstname *</label>
                     <input id="id" name="id" type="hidden">
-                    <input id="firstname" name="firstname" class="mb" type="text">
+                    <input id="firstname" name="firstname" class="textarea mb" type="text">
                     <label for="middlename">Middlename</label>
-                    <input id="middlename" name="middlename" class="mb" type="text">
+                    <input id="middlename" name="middlename" class="textarea mb" type="text">
                     <label for="lastname">Lastname *</label>
-                    <input id="lastname" name="lastname" class="mb" type="text">
+                    <input id="lastname" name="lastname" class="textarea mb" type="text">
                     <label for="employee_no">EE No. *</label>
-                    <input id="employee_no" name="employee_no" class="mb" type="text" maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;">
+                    <input id="employee_no" name="employee_no" class="textarea mb" type="text" maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;">
                     <label for="password">Password *</label>
-                    <input id="password" name="password" class="mb" type="password">
-                    <label style="visibility: hidden;">space</label>
+                    <input id="password" name="password" class="textarea mb" type="password">
                     <div id="loader-modal" class="mb w">
                         <div class="loader"></div><strong>Processing... Please wait...</strong>
                     </div>

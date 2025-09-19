@@ -2,13 +2,13 @@
 
 $host = "192.168.0.40";
 $db_name = "mmsmrlib";
-if($_SESSION['Price_sbu'] == "SMR"){
-	$host = "192.168.0.40";
-	$db_name = "mmsmrlib";
-}else{
-	$host = "192.168.0.43";	
-	$db_name = "mmdsplib";
-}
+// if($_SESSION['Price_sbu'] == "SMR"){
+// 	$host = "192.168.0.40";
+// 	$db_name = "mmsmrlib";
+// }else{
+// 	$host = "192.168.0.43";	
+// 	$db_name = "mmdsplib";
+// }
 
 $username = "studentwhs";
 $password = "studentwhs";

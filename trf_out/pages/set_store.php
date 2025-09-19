@@ -16,16 +16,16 @@
 
 <body>
     <div class="display-center">
-        <div class="display-center"> 
+        <header class="display-center"> 
             <div class="display-center">
                 <img src="../assets/images/lcc.jpg" alt="LCC Logo">
             </div>
             <h4 class="tc font mb">TRF Releasing : Set Store</h4>
-            <h5 class="tc semi-visible">v1.0.0</h5>
+            <h5 class="tc semi-visible">v2.0.0</h5>
             <br>
             <br>
-        </div>
-        <div class="display-center">
+        </header>
+        <main class="display-center">
             <div id="loader-wrapper" class="mb w">
                 <div class="loader"></div><strong>Checking store code... Please wait...</strong>
             </div>
@@ -43,7 +43,7 @@
             <div class="mb w">
                 <button onclick="window.location.href='trfout_download.php'" class="btn btn-lg primary flex a-center j-center"><ion-icon name="arrow-undo"></ion-icon>&nbsp; Back</button>
             </div>
-        </div>
+        </main>
 
         <div id="preloader">
             <div class="caviar-load"></div>

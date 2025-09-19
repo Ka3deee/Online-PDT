@@ -18,6 +18,8 @@ session_start();
   <!---   Content Styles -->
 
   <link href="../mycss.css" rel="stylesheet">
+  <link href="../css/modify.css" rel="stylesheet">
+  <link href="../css/addedcss.css" rel="stylesheet">
   <style>
   .fontTitle{
 	  font-size:10pt;
@@ -100,11 +102,12 @@ session_start();
 </div>
 
 <div id="preloader">
-        <div class="caviar-load"></div>
+  <div class="caviar-load"></div>
 </div>
  
 </body>
-	<script>
+
+<script>
 	var isscanning = false;
 		function clear_fields(){
 			document.getElementById('textInput').value = "";
@@ -196,5 +199,4 @@ session_start();
     <script src="../js/others/plugins.js"></script>
     <!-- Active JS -->
     <script src="../js/active.js"></script>
-
 </html>

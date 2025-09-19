@@ -13,6 +13,7 @@ if(isset($_GET['iupc'])){
     $ip = "";
     if($type == 'Android'){
         $ip = $_SERVER['REMOTE_ADDR'];
+		//$ip = readtxtfile();
     }else{
         $ip = readtxtfile();
     }

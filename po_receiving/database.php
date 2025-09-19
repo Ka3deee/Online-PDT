@@ -3,8 +3,8 @@
         public $que;
         private $result=array();
         private $local_servername = "localhost";
-        private $local_username = "smrapp123";
-        private $local_password = "123";
+        private $local_username = "root";
+        private $local_password = "";
         private $local_dbname = "porcv_db";
         private $conn = '';
     

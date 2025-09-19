@@ -5,7 +5,7 @@ session_start();
 ?>
 <html lang="en">
 <head>
-  <title>PDT Application : Online Price Verifier</title>
+  <title>PDT Application : Price Verifier</title>
   <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +16,8 @@ session_start();
 
   <!---   Content Styles -->
   <link href="../mycss.css" rel="stylesheet">
+  <link href="../css/modify.css" rel="stylesheet">
+  <link href="../css/addedcss.css" rel="stylesheet">
   <style>
   .fontTitle{
 	  font-size:10pt,
@@ -31,7 +33,7 @@ session_start();
 <div class="container">
 	<div class="container text-center">
 		<img src="../resources/lcc.jpg" style="width: 90px; height: 70px;">
-		<h4 class = "fontTitle">Price Verifier Menu</h4>
+		<h4 class = "fontTitle">Price Verifier</h4>
     <br>
     <?php 
     //store Code

@@ -177,30 +177,55 @@ if(!isset($_SESSION['strcode'])){
     <div class="container">
     <!--<div id="alert" class="alert alert-info" role="alert">
     </div>-->
-    
+  
+
     <?php if($type == 'Android'){ ?>
 
-        Transfer No.
-        <div class="input-group mb-1">
-            <input type="number" id="trfbch" min=0 class="form-control nput" placeholder="TRF#" autofocus>
+        <div class="input-group mb-1" style="display:none">
+            <input type="text" id="trfbch" class="form-control nput" placeholder="TRF#" autofocus>
             <div class="input-group-append">
                 <button class="btn btn-primary btn-sm trf-btn" id="add2list" type="button">Add</button>
             </div>
         </div>
-        <textarea name="trfbchlist" id="trfbchlist" cols="30" class="form-control txtarea mb-1" readonly></textarea>
+		<!--<input type="text" id="input">
+		<input type="text" id="inputw">-->
+        <textarea name="trfbchlist" id="trfbchlist" cols="30" class="form-control txtarea mb-1" placeholder="Scan MTR barcode" autofocus></textarea>
+        <span id="spantext" class="text-center" style="color:blue;font-size:12px;font-weight:bold;"></span>
+        <div id="progress" class="progress">
+            <div id="progressbar" class="progress-bar" style="width:0%">0%</div>
+        </div>
+        
         
         <button id="download" class="btn btn-sm mb-1 trf-btn">Download</button>
+        
+		<!-- 
+		o-- Start --o
+			Author: Rainier C. Barbacena
+			Date: June 13, 2023
+			Description: This button creates a text file for the master data to be uploaded on the local DB of PDT.
+		-->
+        <button style="display:none" onclick="saveTextFile()" id="save-text-file" class="btn btn-sm mb-1 trf-btn">Download as txt</button>
+        <!-- 
+			Author: Rainier C. Barbacena
+			Date: June 13, 2023
+			Description: This button creates a text file for the master data to be uploaded on the local DB of PDT.
+		o-- End --o
+		-->
+
         <div class="row mb-1">
             <div class="col"><button id="clearlist" class="btn btn-sm trf-btn">Clear</button></div>
             <div class="col"><a id="home" href="index.php" class="btn btn-sm trf-btn">Back</a></div>
         </div>
         
-        <textarea style="color:red;" name="response" id="response" cols="30" rows="3" class="form-control txtarea" readonly></textarea>    
+        <!-- <iframe id="myiframe" width="100%" height="300" style="border:none;"> -->
+        <iframe id="myiframe" width="100%" height="50" style="border:none;">
+
+        </iframe>
     <?php }else{?>
 
         <h6 class="text-center">Transfer No.</h6>
         <div class="input-group mb-1" style="display:none;">
-            <input type="number" id="trfbch" min=0 class="form-control nput" placeholder="TRF#" autofocus>
+            <input id="trfbch" class="form-control nput" placeholder="TRF#" autofocus>
             <div class="input-group-append">
                 <button class="btn btn-primary btn-sm trf-btn" id="add2list" type="button">Add</button>
             </div>
@@ -242,10 +267,13 @@ if(!isset($_SESSION['strcode'])){
     <?php } ?>
 
     </div>
-
-
     <script src="js/jquery/jquery-3.6.0.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
+
+
+
+
+
     <script>
         //PROGRESS BAR
         function uptprogressbar(percent){
@@ -304,13 +332,13 @@ if(!isset($_SESSION['strcode'])){
                 var arrayTRF = list.split("\n");
                 
                 //all transfer :: STRING TYPE
-                var trfbch = "";
+                var mtrno = "";
                 for(var i = 0; i < arrayTRF.length; i++){
-                    trfbch += arrayTRF[i] + ",";
+                    mtrno += arrayTRF[i] + ",";
                 }
 
-                if(trfbch != ","){     
-                    var test = document.getElementById("myiframe").src = 'fx/downloadtrfbch.fx.php?q='+ String(trfbch);
+                if(mtrno != ","){     
+                    var test = document.getElementById("myiframe").src = 'fx/downloadtrfbch.fx.php?q='+ String(mtrno);
                 }else{
                     alert("Empty list.");
                     enableBTN();
@@ -357,21 +385,6 @@ if(!isset($_SESSION['strcode'])){
             }
         }
 
-/*
-        function hideAlert()
-        {
-            var pb = document.getElementById("alert");
-            pb.style.display = "none";
-            //var res = document.getElementById("response");
-            //res.style.display = "none";
-        }
-        function showAlert()
-        {
-            var pb = document.getElementById("alert");
-            pb.style.display = "block";
-            //var res = document.getElementById("response");
-            //res.style.display = "block";
-        }*/
 
         function disableBTN()
         {
@@ -405,6 +418,7 @@ if(!isset($_SESSION['strcode'])){
 		function saveTextFile() {
             var confirmation = confirm("Are you sure to download data as text file?");
             if (confirmation) {
+                const currentDate = getCurrentDate();
                 document.getElementById("download-animation-wrapper").classList.remove("hidden");
                 document.getElementById("download").disabled = true;
                 document.getElementById("save-text-file").disabled = true;
@@ -420,7 +434,7 @@ if(!isset($_SESSION['strcode'])){
                         var blob = new Blob([this.response], { type: 'text/plain' });
                         var downloadLink = document.createElement('a');
                         downloadLink.href = window.URL.createObjectURL(blob);
-                        downloadLink.download = 'TrfReceivingMasterData.txt';
+                        downloadLink.download = 'TRFINDBMaster_' + currentDate + '.txt';
 
                         // Programmatically trigger the click event on the download link
                         document.body.appendChild(downloadLink);
@@ -444,6 +458,8 @@ if(!isset($_SESSION['strcode'])){
 		*/
 
     </script>
+
+
 
 </body>
 </html>

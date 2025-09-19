@@ -216,7 +216,7 @@ setTimeout(function(){
 	<script>
 	function checkadmin(){
 		let code = prompt("Enter Administrator Passcode");
-		if (code != null) {
+		  if (code != null) {
 			if(code  == '13791379'){
 				window.location.href="usermaintenance.php";
 			}else{
@@ -224,7 +224,6 @@ setTimeout(function(){
 			}
     }
 	}
-  
 	</script>
     <script src="../js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->

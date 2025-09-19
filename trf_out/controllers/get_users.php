@@ -11,9 +11,17 @@ if (isset($_POST['create_user'])) {
 
     $_POST['password'] = md5($_POST['password']);
     $_POST['active'] = 1;
-    $user = create($users, $_POST);
-    $_SESSION['message'] = 'New user has been created!';
-    $_SESSION['type'] = 'create';
+
+    $checkUser = selectOne($users, ['employee_no' => $_POST['employee_no']]);
+    if (!$checkUser) {
+        $user = create($users, $_POST);
+        $_SESSION['message'] = 'New user has been created!';
+        $_SESSION['type'] = 'create';
+    } else {
+        $_SESSION['message'] = 'User account already exists!';
+        $_SESSION['type'] = 'create';
+    }
+
 }
 
 if (isset($_POST['set_user'])) {

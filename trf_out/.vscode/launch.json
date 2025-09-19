@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run Current Node File",
+      "program": "${file}"
+    },
+    {
+      "type": "php",
+      "request": "launch",
+      "name": "Run Current PHP File",
+      "program": "${file}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run Current Python File",
+      "program": "${file}"
+    }
+  ]
+}

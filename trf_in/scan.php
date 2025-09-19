@@ -28,8 +28,9 @@ if(!isset($_SESSION['strcode'])){
     </div>
     <div class="container">
         <!--<p id="rcv"></p>-->
+		<span id="alert" style="color:red;font-size:10px;display:none"><Strong>Invalid : </Strong>Received quantity already satisfied. (Natanggap na ang dami na kailangan.)</span>
         <div class="input-group mb-1 mt-4">
-            <input type="text" id="barcode" class="form-control nput" placeholder="Barcode">
+            <input type="text" id="barcode" class="form-control nput" placeholder="Barcode" autofocus>
             <div class="input-group-append">
                 <a href="#" class="btn btn-sm trf-btn" id="go">Search</a>
             </div>
@@ -47,7 +48,7 @@ if(!isset($_SESSION['strcode'])){
             <tr>
                 <td>RCVQTY:<input class="sr-only" id="expqty" type="text" value="0.00" style="width:100%" readonly/></td>
                 <input class="sr-only" id="expqty" type="text" value="0.00" style="width:100%" readonly/>
-                <td style="padding:0;"><input id="rcvqty" type="number" value="" min=0 style="width:100%;font-size:25px;text-align:center;"/></td>
+                <td style="padding:0;"><input id="rcvqty" type="number" value="" min=0 style="width:100%;font-size:25px;text-align:center;" readonly/></td>
             </tr>
         </table>
         <p class="text-center"><button id="save" class="btn btn-sm mb-1 trf-btn">Save</button>
@@ -61,59 +62,49 @@ if(!isset($_SESSION['strcode'])){
             <div class="col"><a href="index.php" class="btn btn-sm trf-btn">Back</a></div>
         </div>
     </div>
-<script src="js/onscan.js"></script>
-<script src="js/onscan.min.js"></script>
+	
 
-<?php if($type != 'Android'){ ?>
     <script>
-    // Initialize with options
-    onScan.attachTo(document, {
-        suffixKeyCodes: [13], // enter-key expected at the end of a scan
-        reactToPaste: false, // Compatibility to built-in scanners in paste-mode (as opposed to keyboard-mode)
-        onScan: function() { // Alternative to document.addEventListener('scan')
-			var barcode = document.getElementById("barcode").value;
-			if(barcode == ""){
-				console.log("No barcode");
-			}else{
-			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					objJson = JSON.parse(this.responseText);
-					changePage(1);
-					//changePage(1,objJson);
-					document.getElementById("rcvqty").focus();
-				};
-			}
-			xmlhttp.open("GET","fx/fetch.fx.php?iupc="+barcode,true);
-			xmlhttp.send();		
-			}
-        },
-        onKeyDetect: function(iKeyCode){ // output all potentially relevant key events - great for debugging!
-            console.log('Pressed: ' + iKeyCode);
-        }
-    });
-    </script>	
-<?php }else{ ?>
-<script>
-    var barcode = document.getElementById("barcode").value;
-	if(barcode == ""){
-		console.log("No barcode");
-	}else{
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            objJson = JSON.parse(this.responseText);
-            changePage(1);
-            //changePage(1,objJson);
-            document.getElementById("rcvqty").focus();
-        };
-    }
-    xmlhttp.open("GET","fx/fetch.fx.php?iupc="+barcode,true);
-    xmlhttp.send();		
-	}
-    });
-</script>
-<?php } ?>
+	
+        // Select the input field
+        const inputField = document.getElementById('barcode');
+		
+
+        // Add event listener for keydown
+        inputField.addEventListener('keydown', function(event) {
+            // Check if the key pressed is Enter (key code 13 or 'Enter' key)
+            if (event.key === 'Enter' || event.keyCode === 13) {
+                // Do something when Enter is pressed
+                //alert('Enter key was pressed!');
+				
+				var barcode = inputField.value;
+				if(barcode == ""){
+					console.log("No barcode");
+				}else{
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						objJson = JSON.parse(this.responseText);
+						if (objJson.length === 0) {
+							document.getElementById("alert").style.display="block";
+							setTimeout(function() {
+								document.getElementById("alert").style.display="none";
+								inputField.value="";
+							}, 3000);
+							
+						}else{
+							changePage(1);
+							document.getElementById("rcvqty").removeAttribute("readonly");
+							document.getElementById("rcvqty").focus();
+						};
+					};
+				}
+				xmlhttp.open("GET","fx/fetch.fx.php?iupc="+barcode,true);
+				xmlhttp.send();		
+				}
+            }
+        });
+    </script>
 
 
 
@@ -204,9 +195,17 @@ document.getElementById("go").addEventListener('click', function() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             objJson = JSON.parse(this.responseText);
-            changePage(1);
-            //changePage(1,objJson);
-            document.getElementById("rcvqty").focus();
+			if (objJson.length === 0) {
+				document.getElementById("alert").style.display="block";
+				setTimeout(function() {
+					document.getElementById("alert").style.display="none";
+					document.getElementById('barcode').value="";
+				}, 3000);
+			}else{
+				changePage(1);
+				document.getElementById("rcvqty").removeAttribute("readonly");
+				document.getElementById("rcvqty").focus();
+			};
         };
     }
     xmlhttp.open("GET","fx/fetch.fx.php?iupc="+barcode,true);
@@ -227,7 +226,7 @@ document.getElementById("save").addEventListener('click', function() {
 
         //var newqty = parseInt(oldqty + rcvqty);
         if(1 == 2){
-            alert("RCVQTY111 exceeded.");
+            alert("RCVQTY exceeded.");
         }else{
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {

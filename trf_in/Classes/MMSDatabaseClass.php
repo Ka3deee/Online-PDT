@@ -8,7 +8,7 @@ class MMSDatabaseClass
     //test
     //private $mms_dbase        = "mmsmtsml";
     // prod
-    private $mms_dbase        = "mmsmtsml";
+    private $mms_dbase        = "mmlciobj";
     private $mms_uname        = "studentwhs";
     private $mms_pass         = "studentwhs";
 

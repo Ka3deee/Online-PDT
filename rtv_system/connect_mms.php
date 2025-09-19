@@ -1,7 +1,9 @@
 <?php
 
 $host = "192.168.0.40";
-$db_name = "mmsmtsml";
+//live
+$db_name = "mmsmrlib";
+//$db_name = "mmsmtsml";
 $username = "studentwhs";
 $password = "studentwhs";   
 $conn_m = null;
@@ -12,8 +14,10 @@ try {
 		die('Could not connect: ' . odbc_errormsg());
 		exit;
 	}
+
 } catch(Exception $e) {
   echo "Connection failed: " . $e->getMessage();
 }
 
+//try to fetch data,
 ?>

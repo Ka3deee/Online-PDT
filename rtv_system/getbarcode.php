@@ -24,6 +24,7 @@ if (isset($_REQUEST['barcode'])) {
         $hasdata = true;
     }else{
         $hasdata = false;
+        
     }
     $showdata = false;
 

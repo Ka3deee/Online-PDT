@@ -7,6 +7,8 @@ ini_set('max_execution_time', 0); // to get unlimited php script execution time
 $percent = '';
 $mrndcode = date("Ymd").'_6DB0MDM35 '.(time() - strtotime("today"));
 
+
+
 if(isset($_REQUEST["xstrings"])){
 
 	echo 'Downloading Po <br>';
@@ -36,12 +38,10 @@ if(isset($_REQUEST["xstrings"])){
 				$b = $mrndcode;
 				$stmt    = odbc_prepare($conn_m, 'CALL '.$db_name.'.getpx4a(?,?)');
 				$success = odbc_execute($stmt, array($a, $b));
-
 				//echo "First Procedure Done! <br>";			
 				//replace counters to 0;
 				$po_count = 0;
                 $poliststr = "";
-	
 
 			}catch(Exception $exception){			
 				echo $exception->getMessage();
@@ -134,16 +134,15 @@ if(isset($_REQUEST["xstrings"])){
 			
 			$ptd_ct++;
 		}
+		echo 'Total no. of Transfers Downloaded'.$ptd_ct.' <br>';
 
-		echo 'Total no. of Transfers Downloaded '.$ptd_ct.' <br>';
 		//insert to local server
 		for($i = 0; $i<count($ptd); $i++){
-			// $percent = intval($i/(count($ptd)- 1) * 100)."%";  
 			if (count($ptd) > 1) {
-				$percent = intval($i / (count($ptd) - 1) * 100) . "%";
+				$percent = intval($i/(count($ptd)- 1) * 100)."%"; 
 			} else {
 				$percent = intval(100);
-			}
+			} 
 			Try{
 		  //$insert_to_transfers = "INSERT INTO `po_transfers`(`ref_rcv`, `Po`, `Ponumb`, `Inumber`, `Pomum`, `pompk`, `Pomqty`, `idescr`, `Postor`, `Povnum`, `istpdk`, `ivndpn`, `Expqty`, `Expday`, `iupc`, `rcvqty`, `rcvqty_var`, `expiredate`) VALUES ('".$refno."','PO','".$ptd[$i][0]."','".$ptd[$i][1]."','".$ptd[$i][2]."','".$ptd[$i][3]."','".$ptd[$i][4]."','".$ptd[$i][5]."','".$ptd[$i][6]."','".$ptd[$i][7]."','".$ptd[$i][8]."','".$ptd[$i][9]."','".number_format($ptd[$i][10],2)."','".$ptd[$i][11]."','".$ptd[$i][12]."',0,0,0)";			 
 				$conn->beginTransaction();			
@@ -162,7 +161,6 @@ if(isset($_REQUEST["xstrings"])){
 			ob_flush(); 
   			  flush(); 
 		}
-
 		///------------Add to Polist--------------------
 		echo 'Query: insert into PO list';
 		Try{
@@ -209,6 +207,7 @@ if(isset($_REQUEST["xstrings"])){
 				$conn->rollBack();            
 			echo $exception->getMessage();
 			}
+			
 		}
 	}
 	//show result to user

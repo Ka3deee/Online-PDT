@@ -12,13 +12,11 @@ $local_servername = "localhost";
 $local_username = "root";
 $local_password = "";
 $local_dbname = "trfin_db";
+$currentDate = date("Ymd");
 
 try {
   $conn = new PDO("mysql:host=$local_servername;dbname=$local_dbname", $local_username, $local_password);
-  // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //echo "Connected!";
-
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
@@ -67,7 +65,6 @@ $transfersQuery = "SELECT * FROM " . $StoreCode . "_received_batch_trf_tbl WHERE
 $transfersContent = generateTextFileTransfers($transfersQuery, $conn);
 
 // Generate the text file content for the tblupc table
-// $tblUpcQuery = "SELECT * FROM " . $StoreCode . "_iupc_tbl WHERE inumbr IN (SELECT inumbr FROM " . $StoreCode . "_received_batch_trf_tbl WHERE `trfbch` IN ($commaSeparatedString) GROUP BY inumbr)";
 $tblUpcQuery = "SELECT * FROM " . $StoreCode . "_iupc_tbl WHERE id IN (SELECT MAX(id) FROM " . $StoreCode . "_iupc_tbl WHERE inumbr IN (SELECT inumbr FROM " . $StoreCode . "_received_batch_trf_tbl WHERE `trfbch` IN ($commaSeparatedString)) GROUP BY inumbr)";
 
 $tblUpcContent = generateTextFileTblUpc($tblUpcQuery, $conn);
@@ -77,7 +74,7 @@ $fileContent = "Batch Transfer \n" . $transfersContent . "\nIUPC \n" . $tblUpcCo
 
 // Set the appropriate headers to indicate that the response is a downloadable file
 header('Content-Type: text/plain');
-header('Content-Disposition: attachment; filename="TrfReceivingMasterData.txt"');
+header("Content-Disposition: attachment; filename=TRFINDBMaster_{$currentDate}.txt");
 
 // Output the file content
 echo $fileContent;

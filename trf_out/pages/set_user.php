@@ -23,11 +23,11 @@
                 <img src="../assets/images/lcc.jpg" alt="LCC Logo">
             </div>
             <h4 class="tc font mb">TRF Releasing : Set User</h4>
-            <h5 class="tc semi-visible">v1.0.0</h5>
+            <h5 class="tc semi-visible">v2.0.0</h5>
             <br>
             <br>
         </div>
-        <div class="display-center">
+        <main class="display-center">
             <form id="set-user">
                 <div id="loader-wrapper" class="mb w">
                     <div class="loader"></div><strong>Checking user... Please wait...</strong>
@@ -37,11 +37,11 @@
                 </div>  
                 <div class="mb w tc">
                     <label for="employee_no">EE No.</label>
-                    <input class="btn-lg" maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" name="employee_no" id="employee_no" type="text">
+                    <input class="textarea btn-lg" maxlength="5" size="5" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" name="employee_no" id="employee_no" type="text" autofocus>
                 </div>
                 <div class="mb w tc">
                     <label for="password">Password</label>
-                    <input class="btn-lg" name="password" id="password" type="password">
+                    <input class="textarea btn-lg" name="password" id="password" type="password">
                 </div>
                 <div class="mb w">
                     <button onclick="SetUser()" type="submit" class="btn btn-lg primary flex a-center j-center"><ion-icon name="checkmark"></ion-icon>&nbsp; Set</button>
@@ -49,13 +49,12 @@
                 <div class="mb w">
                     <button onclick="CheckAdmin()" type="button" class="btn btn-lg primary flex a-center j-center" id="maintenance-btn"><ion-icon name="people"></ion-icon>&nbsp; User Maintenance</button>
                 </div>
-                </div>
                 <div class="mb w">
                     <button onclick="window.location.href='../../trf_out/index.php'" type="button" class="btn btn-lg primary flex a-center j-center"><ion-icon name="arrow-undo"></ion-icon>&nbsp; Back</button>
                 </div>
             </form>
             <div id="response"></div>
-        </div>
+        </main>
 
         <div id="preloader">
             <div class="caviar-load"></div>
